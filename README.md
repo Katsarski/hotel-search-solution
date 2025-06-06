@@ -68,7 +68,8 @@ It might happen that after the setup the emulator does not have access to the in
 **Workaround:** Following the steps mentioned here worked for me: https://stackoverflow.com/a/42784657  
 
 
-Run tests using e.g. (from the context/dir of the yaml test files): `maestro test --format junit ./`  
+**Example command to run automated tests**  
+- Run (from the dir named test inside this repo): `maestro test --format junit ./`  
 
 # 2. QA Test Strategy & Execution Plan  
 **Assumptions:**  
