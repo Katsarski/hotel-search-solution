@@ -1,3 +1,4 @@
+1. QA environment setup
 The following document outlines the procedure for setting up the QA environment on a Windows machine and running some example automated tests, while most steps might be the same for other OSs this has to be further confirmed
 
 Requirements:
@@ -72,3 +73,63 @@ Workaround: Following the steps mentioned here worked for me: https://stackoverf
 
 Run tests using e.g.
 Run (from the context/dir of the yaml test files): maestro test --format junit ./
+
+
+2. QA Test Strategy & Execution Plan
+Assumptions:
+Hotel details page is not yet implemented
+No hotels/details appear in the Overview page
+No details appear in the Account page
+
+High-level Positive Scenarios to test:
+App Launch/Terminate - Ensure the app loads/closes successfully
+Hotel Search - Input search terms and verify hotel listings matching the search are displayed (high amounts of test data needed), clear search using X
+Favorites - Add/Remove a Hotel to favorites and verify this is reflected in the Favorites/Hotels tab (variying test data - hotels with short/long names/descriptions)
+
+High-level UI Test cases:
+Verify all labels, buttons, and images are correctly rendered
+Verify fonts, colors, and margins match the designss, and good practices like the WCAG are followed
+Verify all interactive elements are clickable/tappable and accessible/leading to corresponding view
+Verify no overlapping elements on the screen
+Verify potrait and landscape modes correctly display each page
+Verify the UI responsiveness on different screen sizes and devices
+Verify there is a consistency of style across screens (e.g. button styles, headers)
+Verify layout adjusts properly for tablet and devices with foldable screens
+Verify loading states are indicated (e.g. endless spinners/placeholders)
+
+High-level App State Transition cases:
+Navigating to/from Overview -> Hotels -> Overview -> Favorites -> etc. and verifying that the states (e.g. previous search performed) are persisted
+Back navigation from the different views (asserting persistance of state if required by design)
+Reopening app after user puts it in background (app state persistence is retsored)
+
+Edge and negative cases:
+Search for hotels using long strings (test for buffer overflow, UI freezes, memory leaks)
+SQL injection against the input fields (hotel search)
+Add hunders of entries in the Favorites tab
+Search using special symbols (!@#%, emojis, JSON, and e.g. cyrilic) and see if this impacts the search results and if such are found if present in results
+Check the app generated data on the device and if it exposes some sensitive information (API keys, secrets)
+Missing/Wrong API key
+No search results
+Network failures
+Insufficient disk space
+
+
+3. CI/CD Setup
+This document explains on high level how test automation can be integrated into CI/CD
+
+Option 1
+stages:
+  - checkout hotel-search app
+  - install dependencies (emulators, flutter etc.)
+  - build (for Android, iOS etc.)
+  - setup and spin up emulator
+  - run the build artifact on emulator
+  - run tests against app
+  
+Option 2
+stages:
+  - pull the artifact to be tested (APK/IPA file)
+  - install dependencies (emulators, maestro etc.)
+  - setup and spin up emulator
+  - launch the artifact onto the emulator
+  - run tests against app
