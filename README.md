@@ -69,7 +69,11 @@ It might happen that after the setup the emulator does not have access to the in
 
 
 **Example command to run automated tests**  
-- Run (from the dir named test inside this repo): `maestro test --format junit ./`  
+- Run (from the dir named test inside this repo): `maestro test --format junit ./`    
+
+<br>
+<br>
+<br>
 
 # 2. QA Test Strategy & Execution Plan  
 **Assumptions:**  
@@ -109,6 +113,9 @@ It might happen that after the setup the emulator does not have access to the in
 - Network failures  
 - Insufficient disk space  
 
+<br>
+<br>
+<br>
 
 # 3. CI/CD Setup  
 This document explains on high level how test automation can be integrated into CI/CD  
