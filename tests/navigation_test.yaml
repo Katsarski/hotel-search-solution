@@ -1,0 +1,27 @@
+appId: com.example.hotel_booking # This should probably be parametrized based on the env we are testing on and the artifact name if it changes
+# Ideally text interactions shall be changed with more robust IDs and more stable locators
+---
+- tapOn: "Overview\nTab 1 of 4"
+- assertVisible: "Hotel Booking"
+- assertVisible:
+    text: "Overview\nTab 1 of 4"
+    enabled: true
+    selected: true
+- tapOn: "Hotels\nTab 2 of 4"
+- assertVisible: "Search Hotels"
+- assertVisible:
+    text: "Hotels\nTab 2 of 4"
+    enabled: true
+    selected: true
+- tapOn: "Favorites\nTab 3 of 4"
+- assertVisible: "Your Favorite Hotels"
+- assertVisible:
+    text: "Favorites\nTab 3 of 4"
+    enabled: true
+    selected: true
+- tapOn: "Account\nTab 4 of 4"
+- assertVisible:
+    text: "Account\nTab 4 of 4"
+    enabled: true
+    selected: true
+- assertVisible: "Your Account"

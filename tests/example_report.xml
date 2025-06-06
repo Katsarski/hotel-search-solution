@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<testsuites>
+  <testsuite name="Test Suite" device="emulator-5554" tests="2" failures="0" time="24">
+    <testcase id="favorites_test" name="favorites_test" classname="favorites_test" time="15" status="SUCCESS"/>
+    <testcase id="navigation_test" name="navigation_test" classname="navigation_test" time="9" status="SUCCESS"/>
+  </testsuite>
+</testsuites>
